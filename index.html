@@ -3,9 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>1.5 meter puzzel</title>
-    <script type="text/text/javascript" src="./js/aframe.min.js"></script>
+    <script src="./js/aframe.min.js"></script>
+    <script src="./js/interaction.js"></script>
+
+    <link type="text/css" type="stylesheet" href="./css/main.css"/>
   </head>
   <body>
-      
+    <a-scene>
+      <a-camera id="js--camera">
+        <a-cursor id="js--cursor"></a-cursor>
+      </a-camera>
+
+      <a-sphere class="js--interactable" color="red" position="-1 1 -3" radius="0.2"></a-sphere>
+    </a-scene>
   </body>
 </html>
