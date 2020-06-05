@@ -35,6 +35,8 @@ window.onload = () => {
     score.parentNode.removeChild(score);
     score = newScore;
     camera.appendChild(score);
+
+      console.log(camera.getAttribute("rotation"));
   }
 
   function completePuzzel(boxButton) {
