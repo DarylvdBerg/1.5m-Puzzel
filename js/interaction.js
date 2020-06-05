@@ -6,20 +6,18 @@ window.onload = () => {
 
   for(let i = 0; i < interactables.length; i++){
     interactables[i].addEventListener("click", function(event){
-      console.log("ik kom hier in");
       var interactable = event.target;
       clicked = !clicked;
-      if(clicked) {
-        ticker = setInterval(update, 50, event.target);
-      } else {
-        clearInterval(ticker);
+      if(clicked){
+        update(interactable);
       }
     });
   }
 
   function update(target){
-    var cursorPosition = cursor.object3D.getWorldPosition();
-    target.setAttribute("position", cursorPosition);
-    console.log("update called");
+    console.log("ik kom hier");
+    var cursorPos = cursor.object3D.getWorldPosition();
+    console.log(cursorPos);
+    target.setAttribute("position", {x: cursorPos.x, y: cursorPos.y, z: cursorPos.z});
   }
 }
