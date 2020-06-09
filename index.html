@@ -13,11 +13,11 @@
 
       <!-- Assets -->
       <a-assets>
-        <img id="buttonTexture" src="resources/textures/button.png" alt="">
+        <img id="door-texture" src="resources/textures/door.png" alt="">
       </a-assets>
 
       <!-- Camera -->
-      <a-camera position="0 1.8 20" wasd-controls="acceleration: 200" gamepad-controls>
+      <a-camera position="0 1.8 0" wasd-controls="acceleration: 200" gamepad-controls>
         <!-- Reticle -->
           <a-entity cursor="fuse: false"
             position="0 0 -1"
@@ -43,82 +43,22 @@
       <!-- Puzzel area 1 -->
       <a-plane id="js--area-1" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="true">
         <!-- Puzzel wall -->
-        <a-box id="js-puzzel-wall-1" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="#ff5757"></a-box>
+        <a-box id="js-puzzel-wall-1" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="#ff5757">
+          <a-plane id="js--door-puzzel-1"position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
+        </a-box>
       </a-plane>
 
-      <!-- Puzzel area 1 -->
-      <a-plane id="js--area-1" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="false">
+      <!-- Puzzel area 2 -->
+      <a-plane id="js--area-2" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="false">
         <!-- Puzzel wall -->
-        <a-box id="js-puzzel-wall-1" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="#ff5757"></a-box>
+        <a-box id="js-puzzel-wall-2" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="#ff5757"></a-box>
       </a-plane>
 
-      <!-- Puzzel area 1 -->
-      <a-plane id="js--area-1" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="false">
+      <!-- Puzzel area 3 -->
+      <a-plane id="js--area-3" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="false">
         <!-- Puzzel wall -->
-        <a-box id="js-puzzel-wall-1" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="#ff5757"></a-box>
+        <a-box id="js-puzzel-wall-3" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="#ff5757"></a-box>
       </a-plane>
-
-
-      <!-- Floor -->
-      <a-plane id="floor" position="0 0 0" rotation="-90 0 0" width="60" height="200" color="#b9bdba" visible="false">
-        <!-- Cross in the middle -->
-        <a-plane position="0 0 0.01" width="0.1" height="200" color="#909190"></a-plane>
-        <a-plane rotation="0 0 90" position="0 0 0.01" width="0.1" height="60" color="#909190"></a-plane>
-
-        <!-- Puzzel boxes -->
-        <a-box id="puzzelBox1" class="js--puzzelBox" position="0 3 1" rotation="90 0 0" width="1" height="3" color="#ff5757">
-          <a-text position="0 1 0.5" align="center" value="Ik ben een puzzel" width="2.8" color="#242424"></a-text>
-          <a-box class="js--boxButton clickable" position="0 0.5 0.5" width="0.5" height="0.2" depth="0.1" color="#d9db70" src="#buttonTexture"></a-box>
-        </a-box>
-        <a-box id="puzzelBox2" class="js--puzzelBox" position="10 10 1" rotation="90 0 0" width="1" height="3" color="#ff5757">
-          <a-text position="0 1 0.5" align="center" value="Ik ben een puzzel" width="2.8" color="#242424"></a-text>
-          <a-box class="js--boxButton" position="0 0.5 0.5" width="0.5" height="0.2" depth="0.1" color="#9c9c9c" src="#buttonTexture"></a-box>
-        </a-box>
-        <a-box id="puzzelBox3" class="js--puzzelBox" position="5 20 1" rotation="90 0 0" width="1" height="3" color="#ff5757">
-          <a-text position="0 1 0.5" align="center" value="Ik ben een puzzel" width="2.8" color="#242424"></a-text>
-          <a-box class="js--boxButton" position="0 0.5 0.5" width="0.5" height="0.2" depth="0.1" color="#9c9c9c" src="#buttonTexture"></a-box>
-        </a-box>
-
-        <!-- Walk Locations -->
-        <a-circle class="clickable js--platform" position="0 0 0.02" radius="0.7" color="#32a852">
-          <a-circle position="0 0 0.01" radius="0.6" color="#aff0c1"></a-circle>
-        </a-circle>
-        <a-circle class="clickable js--platform"  position="4 3 0.02" radius="0.7" color="#32a852">
-          <a-circle position="0 0 0.01" radius="0.6" color="#aff0c1"></a-circle>
-        </a-circle>
-        <a-circle class="clickable js--platform"  position=" 10 7 0.02" radius="0.7" color="#32a852">
-          <a-circle position="0 0 0.01" radius="0.6" color="#aff0c1"></a-circle>
-        </a-circle>
-        <a-circle class="clickable js--platform"  position=" 7 12 0.02" radius="0.7" color="#32a852">
-          <a-circle position="0 0 0.01" radius="0.6" color="#aff0c1"></a-circle>
-        </a-circle>
-        <a-circle class="clickable js--platform"  position=" 5 17 0.02" radius="0.7" color="#32a852">
-          <a-circle position="0 0 0.01" radius="0.6" color="#aff0c1"></a-circle>
-        </a-circle>
-
-        <!-- Guiding lights -->
-        <a-entity
-          id="js--arrow1",
-          class="js--arrow",
-          visible="true",
-          arrow="direction: 0 0 -1; length: 0.5; headLength: 0.15; headWidth: 0.15; color: #a8a832"
-          position="0 3 3.5"
-          animation="property: position; dur: 1000; from: 0 3 3.5; to: 0 3 4; loop: true; dir: alternate; easing: easeInOutQuad"></a-entity>
-        <a-entity
-          id="js--arrow2",
-          class="js--arrow",
-          visible="false",
-          arrow="direction: 0 0 -1; length: 0.5; headLength: 0.15; headWidth: 0.15; color: #a8a832"
-          position="10 10 3.5"
-          animation="property: position; dur: 1000; from: 10 10 3.5; to: 10 10 4; loop: true; dir: alternate; easing: easeInOutQuad"></a-entity>
-        <a-entity
-          id="js--arrow3",
-          class="js--arrow",
-          visible="false",
-          arrow="direction: 0 0 -1; length: 0.5; headLength: 0.15; headWidth: 0.15; color: #a8a832"
-          position="5 20 3.5"
-          animation="property: position; dur: 1000; from: 5 20 3.5; to: 5 20 4; loop: true; dir: alternate; easing: easeInOutQuad"></a-entity>
-      </a-circle>
 
     </a-scene>
   </body>
