@@ -6,6 +6,7 @@
     <script type="text/javascript" src="js/aframe.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/arrow.js"></script>
+    <script type="text/javascript" src="js/aframe-gamepad-controls.js"></script>
   </head>
   <body>
     <a-scene>
@@ -16,7 +17,7 @@
       </a-assets>
 
       <!-- Camera -->
-      <a-camera position="0 1.8 0" wasd-controls="acceleration: 110">
+      <a-camera position="0 1.8 0" wasd-controls="acceleration: 110" gamepad-controls>
         <!-- Reticle -->
           <a-entity cursor="fuse: false"
             position="0 0 -1"
