@@ -31,10 +31,11 @@
             animation__click="property: material.color; startEvents: click; easing: easeInCubic; dur: 200; from: #242424; to: #077560"
             animation__fusing="property: geometry.radiusInner; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.04; to: 0.022"
             animation__mouseleave="property: geometry.radiusInner; startEvents: mouseleave; easing: easeInCubic; dur: 200; to: 0.04"
-            raycaster="objects: .clickable">
+            raycaster="objects: .clickable; far: 2">
           </a-entity>
           <!-- Score -->
         <a-text id="js--score"></a-text>
+        <a-text id="js--sick-counter"></a-text>
       </a-camera>
 
       <!-- Sky -->
@@ -44,14 +45,23 @@
       <a-plane id="js--area-1" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="true">
         <!-- Puzzel wall -->
         <a-box id="js-puzzel-wall-1" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="#ff5757">
-          <a-plane id="js--door-puzzel-1"position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
+          <!-- Blockade to next puzzle -->
+          <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.55" width="2" height="4">
+            <a-box class="js--door-unlocker-bad clickable" width="0.5" height="0.3" position="0 .1 -.4"></a-box>
+            <a-text value="open" align="center" color="black" position="0 .1 .1"></a-text>
+          </a-plane>
+          <a-plane id="js--door-puzzel-1" class="clickable" position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
+        </a-box>
+
+        <a-box position="-2.4 7.3 .9" color="blue" widht=".8" height="1" depth="1.7">
+            <a-box class="js--door-unlocker-good clickable" data-parent="js--area-1" width="0.5" height="0.3" depth="0.2" position="0 -.45w 0"></a-box>
         </a-box>
       </a-plane>
 
       <!-- Puzzel area 2 -->
       <a-plane id="js--area-2" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="false">
         <!-- Puzzel wall -->
-        <a-box id="js-puzzel-wall-2" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="#ff5757"></a-box>
+        <a-box id="js-puzzel-wall-2" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="blue"></a-box>
       </a-plane>
 
       <!-- Puzzel area 3 -->
