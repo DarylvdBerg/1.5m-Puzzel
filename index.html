@@ -14,8 +14,10 @@
       <!-- Assets -->
       <a-assets>
         <img id="door-texture" src="resources/textures/door.png" alt="">
-        <a-asset-item id="world-o" src="resources/models/worldtest.obj"></a-asset-item>
-        <a-asset-item id="world-m" src="resources/models/worldtest.mtl"></a-asset-item>
+        <a-asset-item id="area1-o" src="resources/models/worldtest.obj"></a-asset-item>
+        <a-asset-item id="area1-m" src="resources/models/worldtest.mtl"></a-asset-item>
+        <a-asset-item id="area2-o" src="resources/models/area2joined.obj"></a-asset-item>
+        <a-asset-item id="area2-m" src="resources/models/area2joined.mtl"></a-asset-item>
         <a-asset-item id="human-obj" src="resources/models/human.obj"></a-asset-item>
         <a-asset-item id="human-mtl" src="resources/models/human.mtl"></a-asset-item>
         <a-asset-item id="human-sick-mtl" src="resources/models/human-sick.mtl"></a-asset-item>
@@ -62,7 +64,7 @@
       <a-sky color="#f9f7ff"></a-sky>
 
       <!-- Puzzel area 1 -->
-      <a-entity id="js--area-1" obj-model="obj: #world-o; mtl: #world-m" visible="true">
+      <a-entity id="js--area-1" obj-model="obj: #area1-o; mtl: #area1-m" visible="falsew">
         <!-- Puzzel wall -->
         <a-box id="js-puzzel-wall-1" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757">
           <!-- Blockade to next puzzle -->
@@ -93,13 +95,13 @@
         <a-cylinder position="0 0 0" color="crimson" height="0.2" radius="1.5"></a-cylinder>
 
         <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="0.28 0.33 -10" rotation="0 -90 0" scale="0.3 0.3 0.3"></a-obj-model>
-      <a-entity>
+      </a-entity>
 
       <!-- Puzzel area 2 -->
-      <a-plane id="js--area-2" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="false">
+      <a-entity id="js--area-2" obj-model="obj: #area2-o; mtl: #area2-m" visible="true">
         <!-- Puzzel wall -->
-        <a-box id="js-puzzel-wall-2" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="blue"></a-box>
-      </a-plane>
+        <a-box id="js-puzzel-wall-2" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757"></a-box>
+      </a-entity>
 
       <!-- Puzzel area 3 -->
       <a-plane id="js--area-3" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="false">
