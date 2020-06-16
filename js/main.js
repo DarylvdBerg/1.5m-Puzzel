@@ -12,7 +12,8 @@ window.onload = () => {
   const area2 = document.getElementById("js--area-2");
   const area3 = document.getElementById("js--area-3");
   const endArea = "";
-  const puzzleButtons = document.getElementsByClassName("js--puzzle-button");w
+  const puzzleButtons = document.getElementsByClassName("js--puzzle-button");
+  const collidables = document.getElementsByClassName('collidable');
 
   let score = document.getElementById("js--score");
   let sickCounter = document.getElementById("js--sick-counter");
@@ -23,9 +24,11 @@ window.onload = () => {
   drawScore();
   drawSickCounter();
 
-  //                //
+  console.log(collidables);
+
+  //                  //
   //  EVENT LISTENERS //
-  //                //
+  //                  //
   for(var i = 0; i < doorUnlockersGood.length; i++) {
     doorUnlockersGood[i].addEventListener('click', function(event) {
       const parent = event.target.getAttribute("data-parent");
@@ -33,6 +36,21 @@ window.onload = () => {
       const doorBlocker = area.querySelector('[data-door-blocker]');
       doorBlocker.remove();
       updateScore(10);
+    });
+  }
+
+  for(var i = 0; i < collidables.length; i++) {
+    collidables[i].addEventListener('mouseenter', function(event) {
+      let collideObject = collidables[i];
+      let collideObjectPosition = (collideObject != null) ?
+        collideObject.object3D.getWorldPosition().z : null;
+      let cameraPosition = camera.object3D.getWorldPosition().z;
+
+      if(Math.abs(collideObjectPosition - cameraPosition) <= 2.5) {
+        collideObject.setAttribute('mtl', '#human-sick-mtl');
+        collideObject.classList.remove('collidable');
+        updateSickCounter(3);
+      }
     });
   }
 
