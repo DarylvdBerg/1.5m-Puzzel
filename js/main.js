@@ -14,6 +14,7 @@ window.onload = () => {
   const endArea = "";
   const puzzleButtons = document.getElementsByClassName("js--puzzle-button");
   const collidables = document.getElementsByClassName('collidable');
+  const solutionsPuzzle1 = document.getElementsByClassName('js--solution-1');
 
   let score = document.getElementById("js--score");
   let sickCounter = document.getElementById("js--sick-counter");
@@ -24,21 +25,9 @@ window.onload = () => {
   drawScore();
   drawSickCounter();
 
-  console.log(collidables);
-
   //                  //
   //  EVENT LISTENERS //
   //                  //
-  for(var i = 0; i < doorUnlockersGood.length; i++) {
-    doorUnlockersGood[i].addEventListener('click', function(event) {
-      const parent = event.target.getAttribute("data-parent");
-      const area = document.getElementById(parent);
-      const doorBlocker = area.querySelector('[data-door-blocker]');
-      doorBlocker.remove();
-      updateScore(10);
-    });
-  }
-
   for(var i = 0; i < collidables.length; i++) {
     collidables[i].addEventListener('mouseenter', function(event) {
       let collideObject = collidables[i];
@@ -77,7 +66,8 @@ window.onload = () => {
 
   for (var i = 0; i < puzzleButtons.length; i++) {
     puzzleButtons[i].addEventListener('click', function (event) {
-      console.log("test");
+      togglePuzzleButtons1(event.target);
+      checkSolutionPuzzle1();
     });
   }
   //            //
@@ -206,6 +196,28 @@ window.onload = () => {
   //           //
   //  PUZZLE 1 //
   //           //
+
+  function togglePuzzleButtons1(target) {
+    if (target.getAttribute("color") === "red") {
+      target.setAttribute("color", "yellow")
+    } else {
+        target.setAttribute("color", "red")
+    }
+  }
+
+  function checkSolutionPuzzle1() {
+    var counter = 0;
+    for (var i = 0; i < solutionsPuzzle1.length; i++) {
+      if (solutionsPuzzle1[i].getAttribute("color") === "yellow") {
+        counter++;
+      }
+    }
+    if (counter === 7) {
+      const doorBlocker = area1.querySelector('[data-door-blocker]');
+      doorBlocker.remove();
+      updateScore(10);
+    }
+  }
 
   //           //
   //  PUZZLE 2 //
