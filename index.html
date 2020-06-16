@@ -19,7 +19,7 @@
       </a-assets>
 
       <!-- Camera -->
-      <a-camera position="0 1.8 0" wasd-controls="acceleration: 200" gamepad-controls>
+      <a-camera position="0 1.8 20" wasd-controls="acceleration: 200" gamepad-controls>
         <!-- Reticle -->
           <a-entity cursor="fuse: false"
             position="0 0 -1"
@@ -34,6 +34,21 @@
             animation__fusing="property: geometry.radiusInner; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.04; to: 0.022"
             animation__mouseleave="property: geometry.radiusInner; startEvents: mouseleave; easing: easeInCubic; dur: 200; to: 0.04"
             raycaster="objects: .clickable; far: 2">
+          </a-entity>
+        <!-- Reticle interactable -->
+          <a-entity cursor="fuse: false"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.013; radiusOuter: 0.02"
+            material="color: #242424; shader: flat; opacity: 0.8">
+          </a-entity>
+          <a-entity cursor="fuse: true"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.042"
+            material="color: #077560; shader: flat; opacity: 0.6"
+            animation__click="property: material.color; startEvents: click; easing: easeInCubic; dur: 200; from: #242424; to: #077560"
+            animation__fusing="property: geometry.radiusInner; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.04; to: 0.022"
+            animation__mouseleave="property: geometry.radiusInner; startEvents: mouseleave; easing: easeInCubic; dur: 200; to: 0.04"
+            raycaster="objects: .interactable; far: 50">
           </a-entity>
           <!-- Score -->
         <a-text id="js--score"></a-text>
@@ -56,9 +71,27 @@
           <a-plane id="js--door-puzzel-1" class="clickable" position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
         </a-box>
 
-        <a-box position="2 1 -7" color="blue" widht="1" height="2" >
+        <a-box position="2 1 -4" color="blue" widht="1" height="2" >
             <a-box class="js--door-unlocker-good clickable" data-parent="js--area-1" width="0.5" height="0.3" depth="0.2" position="0 0.5 0.5"></a-box>
         </a-box>
+
+        <!-- puzzle -->
+        <a-box class="js--puzzle-grid-1" position="-12.5 11 -25" width="13" height="13" depth="2" color="blue">
+          <a-box class="js--puzzle-button interactable" position="-4 -4 0.5" width="3" height="3" depth="2" color="red"></a-box>
+          <a-box class="js--puzzle-button interactable" position="0 -4 0.5" width="3" height="3" depth="2" color="red"></a-box>
+          <a-box class="js--puzzle-button interactable" position="4 -4 0.5" width="3" height="3" depth="2" color="red"></a-box>
+
+          <a-box class="js--puzzle-button interactable" position="-4 0 0.5" width="3" height="3" depth="2" color="red"></a-box>
+          <a-box class="js--puzzle-button interactable" position="0 0 0.5" width="3" height="3" depth="2" color="red"></a-box>
+          <a-box class="js--puzzle-button interactable" position="4 0 0.5" width="3" height="3" depth="2" color="red"></a-box>
+
+          <a-box class="js--puzzle-button interactable" position="-4 4 0.5" width="3" height="3" depth="2" color="red"></a-box>
+          <a-box class="js--puzzle-button interactable" position="0 4 0.5" width="3" height="3" depth="2" color="red"></a-box>
+          <a-box class="js--puzzle-button interactable" position="4 4 0.5" width="3" height="3" depth="2" color="red"></a-box>
+        </a-box>
+
+        <!-- puzzle solution spot -->
+        <a-cylinder position="0 0 0" color="crimson" height="0.2" radius="1.5"></a-cylinder>
       <a-entity>
 
       <!-- Puzzel area 2 -->

@@ -12,6 +12,7 @@ window.onload = () => {
   const area2 = document.getElementById("js--area-2");
   const area3 = document.getElementById("js--area-3");
   const endArea = "";
+  const puzzleButtons = document.getElementsByClassName("js--puzzle-button");w
 
   let score = document.getElementById("js--score");
   let sickCounter = document.getElementById("js--sick-counter");
@@ -56,6 +57,11 @@ window.onload = () => {
     });
   }
 
+  for (var i = 0; i < puzzleButtons.length; i++) {
+    puzzleButtons[i].addEventListener('click', function (event) {
+      console.log("test");
+    });
+  }
   //            //
   // DOOR CLICK //
   //            //
