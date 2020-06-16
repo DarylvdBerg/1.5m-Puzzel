@@ -64,15 +64,15 @@ window.onload = () => {
     areaTransition(area1, area2);
   });
 
-  document.getElementById('js--door-puzzel-2')
-  .addEventListener('click', function(event){
-    areaTransition(area2, area3);
-  });
-
-  document.getElementById('js--door-puzzel-3')
-  .addEventListener('click', function(event){
-    areaTransition(area3, endArea);
-  });
+  // document.getElementById('js--door-puzzel-2')
+  // .addEventListener('click', function(event){
+  //   areaTransition(area2, area3);
+  // });
+  //
+  // document.getElementById('js--door-puzzel-3')
+  // .addEventListener('click', function(event){
+  //   areaTransition(area3, endArea);
+  // });
 
   //                  //
   // GENERAL METHODS  //
