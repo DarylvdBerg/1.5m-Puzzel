@@ -12,19 +12,26 @@ window.onload = () => {
   const area2 = document.getElementById("js--area-2");
   const area3 = document.getElementById("js--area-3");
   const endArea = "";
+  const collidables = document.getElementsByClassName('collidable');
+  const puzzleReset = document.getElementsByClassName("js--puzzle-reset");
   const puzzleButtons = document.getElementsByClassName("js--puzzle-button");
   const solutionsPuzzle1 = document.getElementsByClassName('js--solution-1');
-  const collidables = document.getElementsByClassName('collidable');
+  const puzzleNumbers = document.getElementsByClassName("js--puzzle-number");
+  const solutionsPuzzle2 = document.getElementsByClassName('js--solution-2');
+  const codeBox = document.getElementById('js--code-box');
+
 
   let score = document.getElementById("js--score");
   let sickCounter = document.getElementById("js--sick-counter");
+  let codeText = document.getElementById('js--puzzle-2-code');
   let scorePoints = 0;
   let sickPeople = 0;
   let puzzelsCompleted = 0;
+  let code = '';
 
   drawScore();
   drawSickCounter();
-  console.log(collidables);
+  drawPuzzle2Code();
 
   //                  //
   //  EVENT LISTENERS //
@@ -62,24 +69,48 @@ window.onload = () => {
     });
   }
 
+  for (var i = 0; i < puzzleReset.length; i++) {
+    puzzleReset[i].addEventListener('click', function (event) {
+      for (var i = 0; i < puzzleButtons.length; i++) {
+        puzzleButtons[i].setAttribute('color', '#353536');
+      }
+      for (var i = 0; i < puzzleNumbers.length; i++) {
+        puzzleNumbers[i].setAttribute('color', '#353536');
+        code = '';
+        drawPuzzle2Code();
+      }
+    })
+  }
+
   for (var i = 0; i < puzzleButtons.length; i++) {
     puzzleButtons[i].addEventListener('click', function (event) {
-      togglePuzzleButtons1(event.target);
+      togglePuzzleButtons(event.target);
       checkSolutionPuzzle1();
     });
+  }
+
+  for (var i = 0; i < puzzleNumbers.length; i++) {
+    puzzleNumbers[i].addEventListener('click', function (event) {
+      togglePuzzleButtons(event.target);
+      changeCodeText(event.target);
+      drawPuzzle2Code();
+      checkSolutionPuzzle2();
+    })
   }
   //            //
   // DOOR CLICK //
   //            //
   document.getElementById('js--door-puzzel-1')
   .addEventListener('click', function(event){
+    event.target.classList.remove("clickable");
     areaTransition(area1, area2);
   });
 
-  // document.getElementById('js--door-puzzel-2')
-  // .addEventListener('click', function(event){
-  //   areaTransition(area2, area3);
-  // });
+  document.getElementById('js--door-puzzel-2')
+  .addEventListener('click', function(event){
+    event.target.classList.remove("clickable");
+    areaTransition(area2, area3);
+  });
   //
   // document.getElementById('js--door-puzzel-3')
   // .addEventListener('click', function(event){
@@ -113,6 +144,17 @@ window.onload = () => {
     sickCounter.parentNode.removeChild(sickCounter);
     sickCounter = newSickCounter;
     camera.appendChild(sickCounter);
+  }
+
+  function drawPuzzle2Code() {
+    let newCode = document.createElement("a-text");
+    newCode.setAttribute("id", "js--puzzle-2-code");
+    newCode.setAttribute("value", code);
+    newCode.setAttribute("scale", "6 6 6");
+    newCode.setAttribute("position", "-3.5 0 0.55");
+    codeText.parentNode.removeChild(codeText);
+    codeText = newCode;
+    codeBox.appendChild(codeText);
   }
 
   function updateSickCounter(newSickPeople) {
@@ -191,26 +233,34 @@ window.onload = () => {
     }
   }
 
-  //           //
-  //  PUZZLE 1 //
-  //           //
-
-  function togglePuzzleButtons1(target) {
-    if (target.getAttribute("color") === "red") {
-      target.setAttribute("color", "yellow")
+  //             //
+  // ALL PUZZLES //
+  //             //
+  function togglePuzzleButtons(target) {
+    if (target.getAttribute("color") === "#353536") {
+      target.setAttribute("color", "#65a658")
     } else {
-        target.setAttribute("color", "red")
+        target.setAttribute("color", "#353536")
     }
   }
 
+  //           //
+  //  PUZZLE 1 //
+  //           //
   function checkSolutionPuzzle1() {
-    var counter = 0;
-    for (var i = 0; i < solutionsPuzzle1.length; i++) {
-      if (solutionsPuzzle1[i].getAttribute("color") === "yellow") {
+    let counter = 0;
+    let solutionCounter = 0;
+    for (var i = 0; i < puzzleButtons.length; i++) {
+      if (puzzleButtons[i].getAttribute("color") === "#65a658") {
         counter++;
       }
     }
-    if (counter === 7) {
+    for (var i = 0; i < solutionsPuzzle1.length; i++) {
+      if (solutionsPuzzle1[i].getAttribute("color") === "#65a658") {
+        solutionCounter++;
+      }
+    }
+    if (counter === solutionCounter && solutionCounter === 7) {
       const doorBlocker = area1.querySelector('[data-door-blocker]');
       doorBlocker.remove();
       updateScore(10);
@@ -220,6 +270,31 @@ window.onload = () => {
   //           //
   //  PUZZLE 2 //
   //           //
+  function checkSolutionPuzzle2() {
+    var counter = 0;
+    var solutionCounter = 0;
+    for (var i = 0; i < puzzleNumbers.length; i++) {
+      if (puzzleNumbers[i].getAttribute("color") === "#65a658") {
+        counter++;
+      }
+    }
+    for (var i = 0; i < solutionsPuzzle2.length; i++) {
+      if (solutionsPuzzle2[i].getAttribute("color") === "#65a658") {
+        solutionCounter++;
+      }
+    }
+    if (counter === solutionCounter && solutionCounter === 2) {
+      const doorBlocker = area2.querySelector('[data-door-blocker]');
+      doorBlocker.remove();
+      updateScore(10);
+    }
+  }
+
+  function changeCodeText(target) {
+    if (target.getAttribute("color") === "#65a658") {
+      code += target.childNodes[1].getAttribute('value');
+    }
+  }
 
   //           //
   //  PUZZLE 3 //

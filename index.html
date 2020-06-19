@@ -74,21 +74,25 @@
           </a-plane>
           <!-- door -->
           <a-plane id="js--door-puzzel-1" class="clickable" position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
-        </a-box>w
 
-        <!-- puzzle -->
-        <a-box class="js--puzzle-grid-1" position="-12.5 11 -25" width="13" height="13" depth="2" color="blue">
-          <a-box class="js--puzzle-button interactable js--solution-1" position="-4 -4 0.5" width="3" height="3" depth="2" color="red"></a-box>
-          <a-box class="js--puzzle-button interactable" position="0 -4 0.5" width="3" height="3" depth="2" color="red"></a-box>
-          <a-box class="js--puzzle-button interactable js--solution-1" position="4 -4 0.5" width="3" height="3" depth="2" color="red"></a-box>
+          <a-box class="interactable js--puzzle-reset" position="0 5 0.5" height="3" width="8" depth="1" color="#353536">
+            <a-text value="Reset" scale="10 10 10" position="-3 0 0.55"></a-text>
+          </a-box>
 
-          <a-box class="js--puzzle-button interactable js--solution-1" position="-4 0 0.5" width="3" height="3" depth="2" color="red"></a-box>
-          <a-box class="js--puzzle-button interactable" position="0 0 0.5" width="3" height="3" depth="2" color="red"></a-box>
-          <a-box class="js--puzzle-button interactable js--solution-1" position="4 0 0.5" width="3" height="3" depth="2" color="red"></a-box>
+          <!-- puzzle -->
+          <a-box class="js--puzzle-grid-1" position="-12.5 1 0.5" width="13" height="13" depth="1" color="#484bcf">
+            <a-box class="js--puzzle-button interactable js--solution-1" position="-4 -4 0.5" width="3" height="3" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-button interactable" position="0 -4 0.5" width="3" height="3" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-button interactable js--solution-1" position="4 -4 0.5" width="3" height="3" depth="1" color="#353536"></a-box>
 
-          <a-box class="js--puzzle-button interactable js--solution-1" position="-4 4 0.5" width="3" height="3" depth="2" color="red"></a-box>
-          <a-box class="js--puzzle-button interactable js--solution-1" position="0 4 0.5" width="3" height="3" depth="2" color="red"></a-box>
-          <a-box class="js--puzzle-button interactable js--solution-1" position="4 4 0.5" width="3" height="3" depth="2" color="red"></a-box>
+            <a-box class="js--puzzle-button interactable js--solution-1" position="-4 0 0.5" width="3" height="3" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-button interactable" position="0 0 0.5" width="3" height="3" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-button interactable js--solution-1" position="4 0 0.5" width="3" height="3" depth="1" color="#353536"></a-box>
+
+            <a-box class="js--puzzle-button interactable js--solution-1" position="-4 4 0.5" width="3" height="3" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-button interactable js--solution-1" position="0 4 0.5" width="3" height="3" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-button interactable js--solution-1" position="4 4 0.5" width="3" height="3" depth="1" color="#353536"></a-box>
+          </a-box>
         </a-box>
 
         <!-- puzzle solution spot -->
@@ -100,7 +104,63 @@
       <!-- Puzzel area 2 -->
       <a-entity id="js--area-2" obj-model="obj: #area2-o; mtl: #area2-m" visible="true">
         <!-- Puzzel wall -->
-        <a-box id="js-puzzel-wall-2" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757"></a-box>
+        <a-box id="js-puzzel-wall-2" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757">
+          <!-- Blockade to next puzzle -->
+          <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.55" width="2" height="4">
+            <a-box class="js--door-unlocker-bad clickable" width="0.5" height="0.3" position="0 .1 -.4"></a-box>
+            <a-text value="open" align="center" color="black" position="0 .1 .1"></a-text>
+          </a-plane>
+          <!-- door -->
+          <a-plane id="js--door-puzzel-2" class="clickable" position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
+
+          <!-- reset puzzle -->
+          <a-box class="interactable js--puzzle-reset" position="0 5 0.5" height="3" width="8" depth="1" color="#353536">
+            <a-text value="Reset" scale="10 10 10" position="-3 0 0.55"></a-text>
+          </a-box>
+
+          <!-- current code -->
+          <a-box id="js--code-box" position="0 0 0.5" height="3" width="8" depth="1" color="#353536">
+            <a-text id="js--puzzle-2-code"></a-text>
+          </a-box>
+
+          <!-- puzzle -->
+          <a-box class="js--puzzle-grid-2" position="12.5 0 0.5" width="13" height="13" depth="1" color="#484bcf">
+            <a-box class="js--puzzle-number interactable" position="-4 -4 0.5" width="3" height="3" depth="1" color="#353536">
+              <a-text value="7" scale="10 10 10" position="-0.8 0 0.55"></a-text>
+            </a-box>
+            <a-box class="js--puzzle-number interactable" position="0 -4 0.5" width="3" height="3" depth="1" color="#353536">
+              <a-text value="8" scale="10 10 10" position="-0.8 0 0.55"></a-text>
+            </a-box>
+            <a-box class="js--puzzle-number interactable" position="4 -4 0.5" width="3" height="3" depth="1" color="#353536">
+              <a-text value="9" scale="10 10 10" position="-0.8 0 0.55"></a-text>
+            </a-box>
+
+            <a-box class="js--puzzle-number interactable" position="-4 0 0.5" width="3" height="3" depth="1" color="#353536">
+              <a-text value="4" scale="10 10 10" position="-0.8 0 0.55"></a-text>
+            </a-box>
+            <a-box class="js--puzzle-number interactable" position="0 0 0.5" width="3" height="3" depth="1" color="#353536">
+              <a-text value="5" scale="10 10 10" position="-0.8 0 0.55"></a-text>
+            </a-box>
+            <a-box class="js--puzzle-number interactable js--solution-2" position="4 0 0.5" width="3" height="3" depth="1" color="#353536">
+              <a-text value="6" scale="10 10 10" position="-0.8 0 0.55"></a-text>
+            </a-box>
+
+            <a-box class="js--puzzle-number interactable js--solution-2" position="-4 4 0.5" width="3" height="3" depth="1" color="#353536">
+              <a-text value="1" scale="10 10 10" position="-0.8 0 0.55"></a-text>
+            </a-box>
+            <a-box class="js--puzzle-number interactable" position="0 4 0.5" width="3" height="3" depth="1" color="#353536">
+              <a-text value="2" scale="10 10 10" position="-0.8 0 0.55"></a-text>
+            </a-box>
+            <a-box class="js--puzzle-number interactable" position="4 4 0.5" width="3" height="3" depth="1w" color="#353536">
+              <a-text value="3" scale="10 10 10" position="-0.8 0 0.55"></a-text>
+            </a-box>
+          </a-box>w
+        </a-box>
+
+        <!-- puzzle -->
+
+        <!-- puzzle solution spot -->
+        <a-cylinder position="-0.5 0 20" color="crimson" height="0.2" radius="1.5"></a-cylinder>
       </a-entity>
 
       <!-- Puzzel area 3 -->
