@@ -19,6 +19,26 @@ window.onload = () => {
   const solutionsPuzzle2 = document.getElementsByClassName('js--solution-2');
   const codeBox = document.getElementById('js--code-box');
 
+  // Sound and music
+
+  // Origin: https://www.fesliyanstudios.com/royalty-free-sound-effects-download/coughing-159 - 1st item
+  const coughEffect = new Audio("resources/audio/cough.mp3");
+  coughEffect.volume = 0.2;
+
+  // Origin: https://www.fesliyanstudios.com/royalty-free-sound-effects-download/door-lock-91 - 3rd item
+  const doorUnlockEffect = new Audio("resources/audio/door-unlock.mp3");
+  doorUnlockEffect.volume = 0.2;
+
+  // Origin: https://www.fesliyanstudios.com/royalty-free-sound-effects-download/opening-closing-door-54 - 2nd item
+  const openDoorEffect = new Audio("resources/audio/open-door.mp3");
+  openDoorEffect.volume = 0.2;
+
+  // Origin: https://www.youtube.com/watch?v=FoXxpGZZHo4
+  const area1Music = new Audio("resources/audio/area1.mp3");
+  area1Music.volume = 0.1;
+  area1Music.loop = true;
+  area1Music.play();
+
 
   let score = document.getElementById("js--score");
   let sickCounter = document.getElementById("js--sick-counter");
@@ -36,20 +56,24 @@ window.onload = () => {
   //  EVENT LISTENERS //
   //                  //
 
+  // Colliding with Humans.
   for(var i = 0; i < collidables.length; i++) {
     collidables[i].addEventListener('mouseenter', function(event){
         let objectPositionZ = event.target.object3D.getWorldPosition().z;
         let cameraPositionZ = camera.object3D.getWorldPosition().z;
         if(Math.abs(objectPositionZ - cameraPositionZ) <= 2.5) {
+          coughEffect.play();
           event.target.remove();
           updateSickCounter(3);
         }
     });
   }
 
+  // Listener to unlock door for the next area in a bad manner.
   for(var i = 0; i < doorUnlockersBad.length; i++){
     doorUnlockersBad[i].addEventListener('click', function(event) {
       const parent = event.target.parentEl;
+      doorUnlockEffect.play();
       parent.remove();
       updateSickCounter(5);
     });
@@ -99,11 +123,15 @@ window.onload = () => {
   //            //
   // DOOR CLICK //
   //            //
+
+  // Progress to stage 2
   document.getElementById('js--door-puzzel-1')
   .addEventListener('click', function(event){
     areaTransition(area1, area2, "0 1.8 -30");
+    area1Music.stop();
   });
 
+  // Progress to stage 3
   document.getElementById('js--door-puzzel-2')
   .addEventListener('click', function(event){
     areaTransition(area2, area3, "0 1.8 -80");
@@ -180,6 +208,7 @@ window.onload = () => {
   }
 
   function areaTransition(currentArea, nextArea, cameraResetPos) {
+    openDoorEffect.play();
     currentArea.setAttribute('visible', false);
     nextArea.setAttribute('visible', true);
     camera.setAttribute('position', cameraResetPos);
@@ -260,6 +289,7 @@ window.onload = () => {
     if (counter === solutionCounter && solutionCounter === 7) {
       const doorBlocker = area1.querySelector('[data-door-blocker]');
       doorBlocker.remove();
+      doorUnlockEffect.play();
       updateScore(10);
     }
   }
