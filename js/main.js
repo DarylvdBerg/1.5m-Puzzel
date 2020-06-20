@@ -7,7 +7,6 @@ window.onload = () => {
   const platforms = document.getElementsByClassName('js--platform');
   const doorUnlockersBad = document.getElementsByClassName('js--door-unlocker-bad');
   const doorUnlockersGood = document.getElementsByClassName("js--door-unlocker-good");
-  const cameraResetPos = "0 1.8 0";
   const area1 = document.getElementById("js--area-1");
   const area2 = document.getElementById("js--area-2");
   const area3 = document.getElementById("js--area-3");
@@ -102,14 +101,12 @@ window.onload = () => {
   //            //
   document.getElementById('js--door-puzzel-1')
   .addEventListener('click', function(event){
-    event.target.classList.remove("clickable");
-    areaTransition(area1, area2);
+    areaTransition(area1, area2, "0 1.8 -30");
   });
 
   document.getElementById('js--door-puzzel-2')
   .addEventListener('click', function(event){
-    event.target.classList.remove("clickable");
-    areaTransition(area2, area3);
+    areaTransition(area2, area3, "0 1.8 -80");
   });
   //
   // document.getElementById('js--door-puzzel-3')
@@ -182,7 +179,7 @@ window.onload = () => {
     updateArrows();
   }
 
-  function areaTransition(currentArea, nextArea) {
+  function areaTransition(currentArea, nextArea, cameraResetPos) {
     currentArea.setAttribute('visible', false);
     nextArea.setAttribute('visible', true);
     camera.setAttribute('position', cameraResetPos);
