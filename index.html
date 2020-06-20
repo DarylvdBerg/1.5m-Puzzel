@@ -18,6 +18,8 @@
         <a-asset-item id="area1-m" src="resources/models/worldtest.mtl"></a-asset-item>
         <a-asset-item id="area2-o" src="resources/models/area2joined.obj"></a-asset-item>
         <a-asset-item id="area2-m" src="resources/models/area2joined.mtl"></a-asset-item>
+        <a-asset-item id="area3-o" src="resources/models/area3joined.obj"></a-asset-item>
+        <a-asset-item id="area3-m" src="resources/models/area3joined.mtl"></a-asset-item>
         <a-asset-item id="human-obj" src="resources/models/human.obj"></a-asset-item>
         <a-asset-item id="human-mtl" src="resources/models/human.mtl"></a-asset-item>
         <a-asset-item id="human-sick-mtl" src="resources/models/human-sick.mtl"></a-asset-item>
@@ -194,10 +196,65 @@
       </a-entity>
 
       <!-- Puzzel area 3 -->
-      <a-plane id="js--area-3" position="0 0 -100" rotation="-90 0 0" width="50" height="50" color="#b9bdba" visible="false">
+      <a-entity position="0 0 -100" id="js--area-3" obj-model="obj: #area3-o; mtl: #area3-m" visible="false">
         <!-- Puzzel wall -->
-        <a-box id="js-puzzel-wall-3" position="0 25 10" rotation="90 0 0" width="50" height="20" depth="1" color="#ff5757"></a-box>
-      </a-plane>
+        <a-box id="js-puzzel-wall-3" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757">
+          <!-- Blockade to next puzzle -->
+          <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.55" width="2" height="4">
+            <a-box class="js--door-unlocker-bad clickable" width="0.5" height="0.3" position="0 .1 -.4"></a-box>
+            <a-text value="open" align="center" color="black" position="0 .1 .1"></a-text>
+          </a-plane>
+          <!-- door -->
+          <a-plane id="js--door-puzzel-1" class="clickable" position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
+
+          <a-box class="interactable js--puzzle-reset" position="0 7.5 0.5" height="3" width="8" depth="1" color="#353536">
+            <a-text value="Reset" scale="10 10 10" position="-3 0 0.55"></a-text>
+          </a-box>
+
+          <!-- puzzle -->
+          <a-box class="js--puzzle-grid-3" position="0 0 0.5" width="23" height="10" depth="1" color="#484bcf">
+            <a-box class="js--puzzle-maze interactable" position="-9 -3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="-6 -3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="-3 -3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="0 -3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable" position="3 -3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="6 -3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="9 -3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="-9 0 0.5" width="2" height="2s" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="-6 0 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="-3 0 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="0 0 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="3 0 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="6 0 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="9 0 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="-9 3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="-6 3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="-3 3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable" position="0 3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="3 3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="6 3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+            <a-box class="js--puzzle-maze interactable js--solution-3" position="9 3 0.5" width="2" height="2" depth="1" color="#353536"></a-box>
+
+
+            <a-box position="0 -3 0.5" width="16" height="0.2" depth="0.5" color="#353536"></a-box>
+            <a-box position="0 0 0.5" width="16" height="0.2" depth="0.5" color="#353536"></a-box>
+            <a-box position="0 3 0.5" width="16" height="0.2" depth="0.5" color="#353536"></a-box>
+
+            <a-box position="-9 0 0.5" width="0.2" height="6" depth="0.5" color="#353536"></a-box>
+            <a-box position="-6 0 0.5" width="0.2" height="6" depth="0.5" color="#353536"></a-box>
+            <a-box position="-3 0 0.5" width="0.2" height="6" depth="0.5" color="#353536"></a-box>
+            <a-box position="0 0 0.5" width="0.2" height="6" depth="0.5" color="#353536"></a-box>
+            <a-box position="3 0 0.5" width="0.2" height="6" depth="0.5" color="#353536"></a-box>
+            <a-box position="6 0 0.5" width="0.2" height="6" depth="0.5" color="#353536"></a-box>
+            <a-box position="9 0 0.5" width="0.2" height="6" depth="0.5" color="#353536"></a-box>
+          </a-box>
+        </a-box>
+
+        <!-- puzzle solution spot -->
+        <a-cylinder position="0 0.5 -11" color="crimson" height="0.2" radius="1.5"></a-cylinder>
+      </a-entity>
 
     </a-scene>
   </body>

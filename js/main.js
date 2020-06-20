@@ -17,6 +17,8 @@ window.onload = () => {
   const solutionsPuzzle1 = document.getElementsByClassName('js--solution-1');
   const puzzleNumbers = document.getElementsByClassName("js--puzzle-number");
   const solutionsPuzzle2 = document.getElementsByClassName('js--solution-2');
+  const puzzleMazeButtons = document.getElementsByClassName("js--puzzle-maze");
+  const solutionsPuzzle3 = document.getElementsByClassName('js--solution-3');
   const codeBox = document.getElementById('js--code-box');
 
   // Sound and music
@@ -102,6 +104,9 @@ window.onload = () => {
         code = '';
         drawPuzzle2Code();
       }
+      for (var i = 0; i < puzzleMazeButtons.length; i++) {
+        puzzleMazeButtons[i].setAttribute('color', '#353536');
+      }
     })
   }
 
@@ -118,7 +123,14 @@ window.onload = () => {
       changeCodeText(event.target);
       drawPuzzle2Code();
       checkSolutionPuzzle2();
-    })
+    });
+  }
+
+  for (var i = 0; i < puzzleMazeButtons.length; i++) {
+    puzzleMazeButtons[i].addEventListener('click', function (event) {
+      togglePuzzleButtons(event.target);
+      checkSolutionPuzzle3();
+    });
   }
   //            //
   // DOOR CLICK //
@@ -326,4 +338,24 @@ window.onload = () => {
   //           //
   //  PUZZLE 3 //
   //           //
+
+  function checkSolutionPuzzle3() {
+    let counter = 0;
+    let solutionCounter = 0;
+    for (var i = 0; i < puzzleMazeButtons.length; i++) {
+      if (puzzleMazeButtons[i].getAttribute("color") === "#65a658") {
+        counter++;
+      }
+    }
+    for (var i = 0; i < solutionsPuzzle3.length; i++) {
+      if (solutionsPuzzle3[i].getAttribute("color") === "#65a658") {
+        solutionCounter++;
+      }
+    }
+    if (counter === solutionCounter && solutionCounter === 18) {
+      const doorBlocker = area3.querySelector('[data-door-blocker]');
+      doorBlocker.remove();
+      updateScore(10);
+    }
+  }
 }
