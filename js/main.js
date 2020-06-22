@@ -7,6 +7,7 @@ window.onload = () => {
   const platforms = document.getElementsByClassName('js--platform');
   const doorUnlockersBad = document.getElementsByClassName('js--door-unlocker-bad');
   const doorUnlockersGood = document.getElementsByClassName("js--door-unlocker-good");
+  const areaInstruction = document.getElementById("js--area-instruction");
   const area1 = document.getElementById("js--area-1");
   const area2 = document.getElementById("js--area-2");
   const area3 = document.getElementById("js--area-3");
@@ -37,10 +38,13 @@ window.onload = () => {
 
   // Origin: https://www.youtube.com/watch?v=FoXxpGZZHo4
   const area1Music = new Audio("resources/audio/area1.mp3");
-  area1Music.volume = 0.1;
+  area1Music.volume = 0.3;
   area1Music.loop = true;
-  area1Music.play();
 
+  // Origin: https://www.youtube.com/watch?v=hK0XUywdTBg
+  const area2Music = new Audio("resources/audio/area2.mp3");
+  area2Music.volume = 0.1;
+  area2Music.loop = true;
 
   let score = document.getElementById("js--score");
   let sickCounter = document.getElementById("js--sick-counter");
@@ -49,10 +53,6 @@ window.onload = () => {
   let sickPeople = 0;
   let puzzelsCompleted = 0;
   let code = '';
-
-  drawScore();
-  drawSickCounter();
-  drawPuzzle2Code();
 
   //                  //
   //  EVENT LISTENERS //
@@ -136,11 +136,22 @@ window.onload = () => {
   // DOOR CLICK //
   //            //
 
+  // Progress to stage 1
+  document.getElementById('js--door-puzzel-instruction')
+  .addEventListener('click', function(event){
+    areaTransition(areaInstruction, area1, "0 1.8 20");
+    drawScore();
+    drawSickCounter();
+    area1Music.play();
+  });
+
   // Progress to stage 2
   document.getElementById('js--door-puzzel-1')
   .addEventListener('click', function(event){
     areaTransition(area1, area2, "0 1.8 -30");
-    area1Music.stop();
+    area1Music.pause();
+    drawPuzzle2Code();
+    area2Music.play();
   });
 
   // Progress to stage 3
@@ -164,7 +175,7 @@ window.onload = () => {
     newScore.setAttribute("position", "0 0.07 -0.1");
     newScore.setAttribute("align", "center");
     newScore.setAttribute("width", "0.2");
-    newScore.setAttribute("color", "black");
+    newScore.setAttribute("color", "#1a1a1a");
     score.parentNode.removeChild(score);
     score = newScore;
     camera.appendChild(score);
@@ -177,7 +188,7 @@ window.onload = () => {
     newSickCounter.setAttribute("position", ".16 0.07 -0.1");
     newSickCounter.setAttribute("align", "right");
     newSickCounter.setAttribute("width", "0.2");
-    newSickCounter.setAttribute("color", "black");
+    newSickCounter.setAttribute("color", "#1a1a1a");
     sickCounter.parentNode.removeChild(sickCounter);
     sickCounter = newSickCounter;
     camera.appendChild(sickCounter);
@@ -325,6 +336,7 @@ window.onload = () => {
     if (counter === solutionCounter && solutionCounter === 2) {
       const doorBlocker = area2.querySelector('[data-door-blocker]');
       doorBlocker.remove();
+      doorUnlockEffect.play();
       updateScore(10);
     }
   }
@@ -355,6 +367,7 @@ window.onload = () => {
     if (counter === solutionCounter && solutionCounter === 18) {
       const doorBlocker = area3.querySelector('[data-door-blocker]');
       doorBlocker.remove();
+      doorUnlockEffect.play();
       updateScore(10);
     }
   }
