@@ -38,7 +38,7 @@
       </a-assets>
 
       <!-- Camera -->
-      <a-camera position="-25 1.8 53" wasd-controls="acceleration: 200" gamepad-controls>
+      <a-camera position="-25 1.8 53" wasd-controls="acceleration: 1000" gamepad-controls>
         <!-- Reticle -->
           <a-entity cursor="fuse: false"
             position="0 0 -1"
@@ -121,7 +121,7 @@
         <!-- Puzzel wall -->
         <a-box id="js-puzzel-wall-1" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757">
           <!-- Blockade to next puzzle -->
-          <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.55" width="2" height="4">
+          <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.60" width="2" height="4">
             <a-box class="js--door-unlocker-bad clickable" width="0.5" height="0.3" position="0 .1 -.4"></a-box>
             <a-text value="open" align="center" color="black" position="0 .1 .1"></a-text>
           </a-plane>
@@ -148,8 +148,15 @@
           </a-box>
         </a-box>
 
+        <!-- Puzzle reseter -->
+        <a-box color="brown" position="-7 1.22 0" scale="0.5 2 1">
+          <a-text value="Reset puzzels" color="black" position="0.666 0.340 0.313" scale="0.5 0.6 1" rotation="0 90 0"></a-text>
+          <a-box class="clickable js--reseter" color="white" position="0.568 0 0" scale="0.2 0.2 0.4"></a-box>
+        </a-box>
+
         <!-- puzzle solution spot -->
         <a-cylinder position="0 0 0" color="crimson" height="0.2" radius="1.5"></a-cylinder>
+
 
         <!-- Humans -->
         <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="6.8 0.33 -10" rotation="0 -120 0" scale="0.3 0.3 0.3"></a-obj-model>
@@ -168,7 +175,7 @@
         <!-- Puzzel wall -->
         <a-box id="js-puzzel-wall-2" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757">
           <!-- Blockade to next puzzle -->
-          <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.55" width="2" height="4">
+          <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.60" width="2" height="4">
             <a-box class="js--door-unlocker-bad clickable" width="0.5" height="0.3" position="0 .1 -.4"></a-box>
             <a-text value="open" align="center" color="black" position="0 .1 .1"></a-text>
           </a-plane>
@@ -224,6 +231,12 @@
 
         <!-- Car | Origin: https://free3d.com/3d-model/low-poly-car-40967.html -->
         <a-obj-model src="#car-obj" mtl="#car-mtl" position="-10.510 0 -4.436" scale="1.5 1.5 1.5" rotation="0 90 0"></a-obj-model>
+
+        <!-- Puzzle reseter -->
+        <a-box color="blue" position="-10.714 1.22 16.293" scale="0.5 2 1">
+          <a-text value="Reset puzzels" color="white" position="0.666 0.340 0.313" scale="0.5 0.6 1" rotation="0 90 0"></a-text>
+          <a-box class="clickable js--reseter" color="white" position="0.568 0 0" scale="0.2 0.2 0.4"></a-box>
+        </a-box>
 
         <!-- Humans -->
         <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="3.582 0.62 -19.210" rotation="0 -180 0" scale="0.3 0.3 0.3"></a-obj-model>
@@ -297,6 +310,24 @@
             <a-box position="6 0 0.5" width="0.2" height="6" depth="0.5" color="#353536"></a-box>
             <a-box position="9 0 0.5" width="0.2" height="6" depth="0.5" color="#353536"></a-box>
           </a-box>
+        </a-box>
+
+        <!-- Humans -->
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-21.560 0.825 21.491" rotation="0 -120 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="7.563 0.825 20.631" rotation="0 -200 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="17.487 0.825 -5.983" rotation="0 180 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="0.167 0.825 14.329" rotation="0 0 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="10.661 0.825 7.216" rotation="0 -150 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="13.417 0.825 -9.682" rotation="0 90 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-10.482 0.825 7.639" rotation="0 40 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="17.874 0.825 7.644" rotation="0 -30 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-3.569 0.825 -5.354" rotation="0 -120 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-14.639 0.825 0.698" rotation="0 40 0" scale="0.3 0.3 0.3"></a-obj-model>
+
+        <!-- Puzzle reseter -->
+        <a-box color="yellow" position="-10.714 1.22 -9.579" scale="0.5 2 1" rotation="0 90 0">
+          <a-text value="Reset puzzels" color="black" position="0.666 0.340 0.313" scale="0.5 0.6 1" rotation="0 90 0"></a-text>
+          <a-box class="clickable js--reseter" color="black" position="0.568 0 0" scale="0.2 0.2 0.4"></a-box>
         </a-box>
 
         <!-- puzzle solution spot -->

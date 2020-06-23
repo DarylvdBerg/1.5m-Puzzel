@@ -21,6 +21,7 @@ window.onload = () => {
   const puzzleMazeButtons = document.getElementsByClassName("js--puzzle-maze");
   const solutionsPuzzle3 = document.getElementsByClassName('js--solution-3');
   const codeBox = document.getElementById('js--code-box');
+  const reseters = document.getElementsByClassName('js--reseter');
 
   // Sound and music
 
@@ -46,6 +47,10 @@ window.onload = () => {
   area2Music.volume = 0.1;
   area2Music.loop = true;
 
+  const area3Music = new Audio("resources/audio/area3.mp3");
+  area3Music.volume = 0.1;
+  area3Music.loop = true;
+
   let score = document.getElementById("js--score");
   let sickCounter = document.getElementById("js--sick-counter");
   let codeText = document.getElementById('js--puzzle-2-code');
@@ -59,11 +64,17 @@ window.onload = () => {
   //                  //
 
   // Colliding with Humans.
-  for(var i = 0; i < collidables.length; i++) {
+  for(let i = 0; i < collidables.length; i++) {
     collidables[i].addEventListener('mouseenter', function(event){
         let objectPositionZ = event.target.object3D.getWorldPosition().z;
         let cameraPositionZ = camera.object3D.getWorldPosition().z;
-        if(Math.abs(objectPositionZ - cameraPositionZ) <= 2.5) {
+        let objectPositionX = event.target.object3D.getWorldPosition().x;
+        let cameraPositionX = camera.object3D.getWorldPosition().x;
+
+        let calculationZ = Math.abs(cameraPositionZ - objectPositionZ);
+        let calculationX = Math.abs(cameraPositionX - objectPositionX);
+
+        if(calculationZ <= 2.5 && calculationX <= 2.5) {
           coughEffect.play();
           event.target.remove();
           updateSickCounter(3);
@@ -72,7 +83,7 @@ window.onload = () => {
   }
 
   // Listener to unlock door for the next area in a bad manner.
-  for(var i = 0; i < doorUnlockersBad.length; i++){
+  for(let i = 0; i < doorUnlockersBad.length; i++){
     doorUnlockersBad[i].addEventListener('click', function(event) {
       const parent = event.target.parentEl;
       doorUnlockEffect.play();
@@ -81,43 +92,50 @@ window.onload = () => {
     });
   }
 
-  for (var i = 0; i < boxButtons.length; i++) {
+  // Listener for puzzle reset
+  for(let i = 0; i < reseters.length; i++) {
+    reseters[i].addEventListener('click', function(event) {
+      window.location.reload();
+    });
+  }
+
+  for (let i = 0; i < boxButtons.length; i++) {
     boxButtons[i].addEventListener('click', function (event) {
       completePuzzel(event.target);
       drawScore();
     });
   }
 
-  for (var i = 0; i < platforms.length; i++) {
+  for (let i = 0; i < platforms.length; i++) {
     platforms[i].addEventListener('click', function (event) {
       updatePlayerPosition(event.target.getAttribute("position"));
     });
   }
 
-  for (var i = 0; i < puzzleReset.length; i++) {
+  for (let i = 0; i < puzzleReset.length; i++) {
     puzzleReset[i].addEventListener('click', function (event) {
-      for (var i = 0; i < puzzleButtons.length; i++) {
+      for (let i = 0; i < puzzleButtons.length; i++) {
         puzzleButtons[i].setAttribute('color', '#353536');
       }
-      for (var i = 0; i < puzzleNumbers.length; i++) {
+      for (let i = 0; i < puzzleNumbers.length; i++) {
         puzzleNumbers[i].setAttribute('color', '#353536');
         code = '';
         drawPuzzle2Code();
       }
-      for (var i = 0; i < puzzleMazeButtons.length; i++) {
+      for (let i = 0; i < puzzleMazeButtons.length; i++) {
         puzzleMazeButtons[i].setAttribute('color', '#353536');
       }
     })
   }
 
-  for (var i = 0; i < puzzleButtons.length; i++) {
+  for (let i = 0; i < puzzleButtons.length; i++) {
     puzzleButtons[i].addEventListener('click', function (event) {
       togglePuzzleButtons(event.target);
       checkSolutionPuzzle1();
     });
   }
 
-  for (var i = 0; i < puzzleNumbers.length; i++) {
+  for (let i = 0; i < puzzleNumbers.length; i++) {
     puzzleNumbers[i].addEventListener('click', function (event) {
       togglePuzzleButtons(event.target);
       changeCodeText(event.target);
@@ -126,7 +144,7 @@ window.onload = () => {
     });
   }
 
-  for (var i = 0; i < puzzleMazeButtons.length; i++) {
+  for (let i = 0; i < puzzleMazeButtons.length; i++) {
     puzzleMazeButtons[i].addEventListener('click', function (event) {
       togglePuzzleButtons(event.target);
       checkSolutionPuzzle3();
@@ -158,6 +176,8 @@ window.onload = () => {
   document.getElementById('js--door-puzzel-2')
   .addEventListener('click', function(event){
     areaTransition(area2, area3, "0 1.8 -80");
+    area2Music.pause();
+    area3Music.play();
   });
   //
   // document.getElementById('js--door-puzzel-3')
@@ -282,6 +302,17 @@ window.onload = () => {
     }
   }
 
+  function calculateEnding() {
+    // Calculate the ending based on score and sick people.
+    if(sickCounter <= 0) {
+      // Good ending
+    } else if((scorePoints - sickPeople) >= 20) {
+      // Okay ending
+    } else {
+      // Bad ending
+    }
+  }
+
   //             //
   // ALL PUZZLES //
   //             //
@@ -299,12 +330,12 @@ window.onload = () => {
   function checkSolutionPuzzle1() {
     let counter = 0;
     let solutionCounter = 0;
-    for (var i = 0; i < puzzleButtons.length; i++) {
+    for (let i = 0; i < puzzleButtons.length; i++) {
       if (puzzleButtons[i].getAttribute("color") === "#65a658") {
         counter++;
       }
     }
-    for (var i = 0; i < solutionsPuzzle1.length; i++) {
+    for (let i = 0; i < solutionsPuzzle1.length; i++) {
       if (solutionsPuzzle1[i].getAttribute("color") === "#65a658") {
         solutionCounter++;
       }
@@ -321,14 +352,14 @@ window.onload = () => {
   //  PUZZLE 2 //
   //           //
   function checkSolutionPuzzle2() {
-    var counter = 0;
-    var solutionCounter = 0;
-    for (var i = 0; i < puzzleNumbers.length; i++) {
+    let counter = 0;
+    let solutionCounter = 0;
+    for (let i = 0; i < puzzleNumbers.length; i++) {
       if (puzzleNumbers[i].getAttribute("color") === "#65a658") {
         counter++;
       }
     }
-    for (var i = 0; i < solutionsPuzzle2.length; i++) {
+    for (let i = 0; i < solutionsPuzzle2.length; i++) {
       if (solutionsPuzzle2[i].getAttribute("color") === "#65a658") {
         solutionCounter++;
       }
@@ -354,12 +385,12 @@ window.onload = () => {
   function checkSolutionPuzzle3() {
     let counter = 0;
     let solutionCounter = 0;
-    for (var i = 0; i < puzzleMazeButtons.length; i++) {
+    for (let i = 0; i < puzzleMazeButtons.length; i++) {
       if (puzzleMazeButtons[i].getAttribute("color") === "#65a658") {
         counter++;
       }
     }
-    for (var i = 0; i < solutionsPuzzle3.length; i++) {
+    for (let i = 0; i < solutionsPuzzle3.length; i++) {
       if (solutionsPuzzle3[i].getAttribute("color") === "#65a658") {
         solutionCounter++;
       }
