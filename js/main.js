@@ -11,7 +11,7 @@ window.onload = () => {
   const area1 = document.getElementById("js--area-1");
   const area2 = document.getElementById("js--area-2");
   const area3 = document.getElementById("js--area-3");
-  const endArea = "";
+  const endArea = document.getElementById("js--area-end");
   const collidables = document.getElementsByClassName('collidable');
   const puzzleReset = document.getElementsByClassName("js--puzzle-reset");
   const puzzleButtons = document.getElementsByClassName("js--puzzle-button");
@@ -24,6 +24,12 @@ window.onload = () => {
   const reseters = document.getElementsByClassName('js--reseter');
 
   // Sound and music
+
+  // Origin: https://www.youtube.com/watch?v=SWBDQqyxujE
+  const goodEndSoundEffect = new Audio("resources/audio/end-sound.mp3");
+
+  // Origin: https://www.youtube.com/watch?v=_4vQ6ZQGdnE
+  const badEndSoundEffect = new Audio("resources/audio/death-sound.mp3");
 
   // Origin: https://www.fesliyanstudios.com/royalty-free-sound-effects-download/coughing-159 - 1st item
   const coughEffect = new Audio("resources/audio/cough.mp3");
@@ -179,11 +185,14 @@ window.onload = () => {
     area2Music.pause();
     area3Music.play();
   });
-  //
-  // document.getElementById('js--door-puzzel-3')
-  // .addEventListener('click', function(event){
-  //   areaTransition(area3, endArea);
-  // });
+
+  // Progress to end stage
+  document.getElementById('js--door-puzzel-3')
+  .addEventListener('click', function(event){
+    areaTransition(area3, endArea, "0 1.8 100");
+    calculateEnding();
+    area3Music.pause();
+  });
 
   //                  //
   // GENERAL METHODS  //
@@ -304,12 +313,17 @@ window.onload = () => {
 
   function calculateEnding() {
     // Calculate the ending based on score and sick people.
-    if(sickCounter <= 0) {
+    if((scorePoints - sickPeople) >= 30) {
       // Good ending
+      goodEndSoundEffect.play();
+      document.getElementById("js--good-end").setAttribute("visible", "true");
     } else if((scorePoints - sickPeople) >= 20) {
       // Okay ending
+      document.getElementById("js--okay-end").setAttribute("visible", "true");
     } else {
       // Bad ending
+      badEndSoundEffect.play();
+      document.getElementById("js--bad-end").setAttribute("visible", "true");
     }
   }
 

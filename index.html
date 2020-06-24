@@ -22,6 +22,9 @@
         <img id="obstacle" src="resources/images/obstacle.png" alt="">
         <img id="puzzle" src="resources/images/puzzle.png" alt="">
         <img id="solution" src="resources/images/solution.png" alt="">
+        <img id="goodEndScreen" src="resources/images/good_end_screen.jpg" alt="">
+        <img id="okayEndScreen" src="resources/images/okay_end_screen.jpg" alt="">
+        <img id="badEndScreen" src="resources/images/bad_end_screen.jpg" alt="">
         <a-asset-item id="area1-o" src="resources/models/worldtest.obj"></a-asset-item>
         <a-asset-item id="area1-m" src="resources/models/worldtest.mtl"></a-asset-item>
         <a-asset-item id="area2-o" src="resources/models/area2joined.obj"></a-asset-item>
@@ -334,6 +337,12 @@
         <a-cylinder position="0 0.5 -11" color="crimson" height="0.2" radius="1.5"></a-cylinder>
       </a-entity>
 
+      <!-- End screen -->
+      <a-circle id="js--area-end" position="0 0 100" rotation="-90 0 0" radius="5" color="#7d9e86" visible="true">
+        <a-image id="js--good-end" src="#goodEndScreen" position="0 5 3" rotation="90 0 0" width="8" height="5.5" visible="false"></a-image>
+        <a-image id="js--okay-end" src="#okayEndScreen" position="0 5 3" rotation="90 0 0" width="8" height="5.5" visible="false"></a-image>
+        <a-image id="js--bad-end" src="#badEndScreen" position="0 5 3" rotation="90 0 0" width="8" height="5.5" visible="false"></a-image>
+      </a-circl>
     </a-scene>
   </body>
 </html>
