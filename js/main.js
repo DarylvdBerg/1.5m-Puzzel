@@ -22,6 +22,7 @@ window.onload = () => {
   const solutionsPuzzle3 = document.getElementsByClassName('js--solution-3');
   const codeBox = document.getElementById('js--code-box');
   const reseters = document.getElementsByClassName('js--reseter');
+  const hints = document.getElementsByClassName('js--hint');
 
   // Sound and music
 
@@ -85,6 +86,15 @@ window.onload = () => {
           event.target.remove();
           updateSickCounter(3);
         }
+    });
+  }
+
+  // Listener for hints
+  for(let i = 0; i < hints.length; i++) {
+    hints[i].addEventListener('click', function(event) {
+      let parent = event.target.parentEl;
+      let childTarget = parent.children[0].children[0];
+      childTarget.setAttribute('visible', true);
     });
   }
 
