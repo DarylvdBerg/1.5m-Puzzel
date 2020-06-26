@@ -42,7 +42,7 @@
       </a-assets>
 
       <!-- Camera -->
-      <a-entity id="camera" wasd-controls="accelaration: 1000" movement-controls position="-25 1.8 53">
+      <a-entity id="camera" wasd-controls="accelaration: 1000" movement-controls position="-25 1 53">
         <a-entity id="inner-camera" camera look-controls="pointerLockEnabled: true;">
           <!-- Reticle -->
             <a-entity cursor="fuse: false"
@@ -84,7 +84,7 @@
       <a-sky color="#f9f7ff"></a-sky>
 
       <!-- Instruction area -->
-      <a-plane id="js--area-instruction" position="0 0.8 50" rotation="-90 0 0" width="60" height="10" color="#7d9e86" visible="true">
+      <a-plane id="js--area-instruction" position="0 0 50" rotation="-90 0 0" width="60" height="10" color="#7d9e86" visible="true">
 
         <a-text color="#1a1a1a" value="Welkom bij 1.5 meter Extra Vaganza!" position="-25 4.9 4.5" rotation="90 0 0" align="center" scale="2 2 2"></a-text>
         <a-image src="#controller_instructie" position="-27 4.9 3.2" rotation="90 0 0" width="3" height="1.7"></a-image>
@@ -123,7 +123,7 @@
       </a-plane>
 
       <!-- Puzzel area 1 -->
-      <a-entity id="js--area-1" position="0 0.8 0" obj-model="obj: #area1-o; mtl: #area1-m" visible="false">
+      <a-entity id="js--area-1" obj-model="obj: #area1-o; mtl: #area1-m" visible="false">
         <!-- Puzzel wall -->
         <a-box id="js-puzzel-wall-1" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757">
           <a-text class="js--score" color="black" width="50" position="7.836 5.256 0.711" value="Score: 0"></a-text>
@@ -132,8 +132,8 @@
           <a-obj-model src="#arrow-obj" mtl="#arrow-mtl" position="0 -3.309 0.916" rotation="180 90 0" scale="0.3 0.5 0.5"
           animation="property: position; to: 0 -5 0.916; dur: 1500; easing: linear; loop: true; dir: alternate; repeat: indefinite;"></a-obj-model>
           <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.60" width="2" height="4">
-            <a-box class="js--door-unlocker-bad clickable" width="0.5" height="0.3" position="0 .1 -.4"></a-box>
-            <a-text value="open" align="center" color="black" position="0 .1 .1"></a-text>
+            <a-box class="js--door-unlocker-bad clickable" width="1" height="0.3" position="0 .1 -.4"></a-box>
+            <a-text value="ontgrendel" align="center" color="black" position="0 .1 .1"></a-text>
           </a-plane>
           <!-- door -->
           <a-plane id="js--door-puzzel-1" class="clickable" position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
@@ -170,7 +170,7 @@
             <a-text position="-2.783 0.420 0" value="Kijk naar wat wordt blokkeerd :)" visible="false" width="9"></a-text>
           </a-plane>
           <a-text value="hint" color="black" position="-0.600 -1.446 0.655" scale="3 2 1" rotation="0 0 0"></a-text>
-          <a-box class="clickable js--hint" color="white" position="0.089 -1.459 0.549" scale="1.8 0.5 0.2"></a-box>
+          <a-box class="interactable js--hint" color="white" position="0.089 -1.459 0.549" scale="1.8 0.5 0.2"></a-box>
         </a-box>
 
         <!-- puzzle solution spot -->
@@ -178,19 +178,19 @@
 
 
         <!-- Humans -->
-        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="6.8 0.33 -10" rotation="0 -120 0" scale="0.3 0.3 0.5"></a-obj-model>
-        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="6.8 0.64 10.05" rotation="0 -200 0" scale="0.3 0.3 0.5"></a-obj-model>
-        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-11.77 0.75 10.64" rotation="0 0 0" scale="0.3 0.3 0.5"></a-obj-model>
-        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="12.198 0.864 4.984" rotation="0 0 0" scale="0.3 0.3 0.5"></a-obj-model>
-        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="4.25 0.33 -10" rotation="0 -150 0" scale="0.3 0.3 0.5"></a-obj-model>
-        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-6.67 0.50 -8.56" rotation="0 -120 0" scale="0.3 0.3 0.5"></a-obj-model>
-        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-9.53 0.70 -5.62" rotation="0 40 0" scale="0.3 0.3 0.5"></a-obj-model>
-        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-6.174 0.33 -17.33" rotation="0 -30 0" scale="0.3 0.3 0.5"></a-obj-model>
-        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="2.10 0.33 -20.47" rotation="0 -120 0" scale="0.3 0.3 0.5"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="6.8 0.33 -10" rotation="0 -120 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="6.8 0.64 10.05" rotation="0 -200 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-11.77 0.75 10.64" rotation="0 0 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="12.198 0.864 4.984" rotation="0 0 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="4.25 0.33 -10" rotation="0 -150 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-6.67 0.50 -8.56" rotation="0 -120 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-9.53 0.70 -5.62" rotation="0 40 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="-6.174 0.33 -17.33" rotation="0 -30 0" scale="0.3 0.3 0.3"></a-obj-model>
+        <a-obj-model class="collidable" src="#human-obj" mtl="#human-mtl" position="2.10 0.33 -20.47" rotation="0 -120 0" scale="0.3 0.3 0.3"></a-obj-model>
       </a-entity>
 
       <!-- Puzzel area 2 -->
-      <a-entity position="0 0.8 -50" id="js--area-2" obj-model="obj: #area2-o; mtl: #area2-m" visible="false">
+      <a-entity position="0 0 -50" id="js--area-2" obj-model="obj: #area2-o; mtl: #area2-m" visible="false">
         <!-- Puzzel wall -->
         <a-box id="js-puzzel-wall-2" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757">
           <a-text class="js--score" color="black" width="50" position="-23.098 5.256 0.711" value="Score: 0"></a-text>
@@ -199,8 +199,8 @@
           <a-obj-model src="#arrow-obj" mtl="#arrow-mtl" position="0 -3.309 0.916" rotation="180 90 0" scale="0.3 0.5 0.5"
           animation="property: position; to: 0 -5 0.916; dur: 1500; easing: linear; loop: true; dir: alternate; repeat: indefinite;"></a-obj-model>
           <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.60" width="2" height="4">
-            <a-box class="js--door-unlocker-bad clickable" width="0.5" height="0.3" position="0 .1 -.4"></a-box>
-            <a-text value="open" align="center" color="black" position="0 .1 .1"></a-text>
+            <a-box class="js--door-unlocker-bad clickable" width="1" height="0.3" position="0 .1 -.4"></a-box>
+            <a-text value="ontgrendel" align="center" color="black" position="0 .1 .1"></a-text>
           </a-plane>
           <!-- door -->
           <a-plane id="js--door-puzzel-2" class="clickable" position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
@@ -267,7 +267,7 @@
             <a-text position="-2.783 0.420 0" value="De code is de som van... ?" visible="false" width="10"></a-text>
           </a-plane>
           <a-text value="hint" color="black" position="-0.600 -1.446 0.655" scale="3 2 1" rotation="0 0 0"></a-text>
-          <a-box class="clickable js--hint" color="white" position="0.089 -1.459 0.549" scale="1.8 0.5 0.2"></a-box>
+          <a-box class="interactable js--hint" color="white" position="0.089 -1.459 0.549" scale="1.8 0.5 0.2"></a-box>
         </a-box>
 
         <!-- Humans -->
@@ -288,7 +288,7 @@
       </a-entity>
 
       <!-- Puzzel area 3 -->
-      <a-entity position="0 0.8 -100" id="js--area-3" obj-model="obj: #area3-o; mtl: #area3-m" visible="false">
+      <a-entity position="0 0 -100" id="js--area-3" obj-model="obj: #area3-o; mtl: #area3-m" visible="false">
         <!-- Puzzel wall -->
         <a-box id="js-puzzel-wall-3" position="0 10 -25" rotation="0 0 0" width="50" height="20" depth="1" color="#ff5757">
           <a-text class="js--score" color="black" width="50" position="-16.161 7.714 0.711" value="Score: 0"></a-text>
@@ -296,9 +296,9 @@
           <a-obj-model src="#arrow-obj" mtl="#arrow-mtl" position="3.495 -7.495 0.916" rotation="-90 90 0" scale="0.3 0.5 0.5"
           animation="property: position; to: 2.9 -7.495 0.916; dur: 1500; easing: linear; loop: true; dir: alternate; repeat: indefinite;"></a-obj-model>
           <!-- Blockade to next puzzle -->
-          <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.55" width="2" height="4">
-            <a-box class="js--door-unlocker-bad clickable" width="0.5" height="0.3" position="0 .1 -.4"></a-box>
-            <a-text value="open" align="center" color="black" position="0 .1 .1"></a-text>
+          <a-plane class="js--door-blocker" data-door-blocker="" color="grey" position="0 -8 0.60" width="2" height="4">
+            <a-box class="js--door-unlocker-bad clickable" width="1" height="0.3" position="0 .1 -.4"></a-box>
+            <a-text value="ontgrendel" align="center" color="black" position="0 .1 .1"></a-text>
           </a-plane>
           <!-- door -->
           <a-plane id="js--door-puzzel-3" class="clickable" position="0 -8 0.52" width="2" height="4" src="#door-texture"></a-plane>
@@ -363,7 +363,7 @@
         <!-- Puzzle reseter -->
         <a-box color="yellow" position="-10.714 1.22 -9.579" scale="0.5 2 1" rotation="0 90 0">
           <a-text value="Reset puzzels" color="black" position="0.666 0.340 0.313" scale="0.5 0.6 1" rotation="0 90 0"></a-text>
-          <a-box class="clickable js--reseter" color="black" position="0.568 0 0" scale="0.2 0.2 0.4"></a-box>
+          <a-box class="interactable js--reseter" color="black" position="0.568 0 0" scale="0.2 0.2 0.4"></a-box>
         </a-box>
 
         <!-- Puzzle hint -->
@@ -380,7 +380,7 @@
       </a-entity>
 
       <!-- End screen -->
-      <a-circle id="js--area-end" position="0 0.8 100" rotation="-90 0 0" radius="5" color="#7d9e86" visible="true">
+      <a-circle id="js--area-end" position="0 0 100" rotation="-90 0 0" radius="5" color="#7d9e86" visible="false">
         <a-image id="js--good-end" src="#goodEndScreen" position="0 5 3" rotation="90 0 0" width="8" height="5.5" visible="false"></a-image>
         <a-image id="js--okay-end" src="#okayEndScreen" position="0 5 3" rotation="90 0 0" width="8" height="5.5" visible="false"></a-image>
         <a-image id="js--bad-end" src="#badEndScreen" position="0 5 3" rotation="90 0 0" width="8" height="5.5" visible="false"></a-image>
