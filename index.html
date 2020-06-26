@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <title>1.5 meter puzzel</title>
     <script type="text/javascript" src="js/aframe.min.js"></script>
+    <script src="js/aframe-extra.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/arrow.js"></script>
-    <script type="text/javascript" src="js/aframe-gamepad-controls.js"></script>
   </head>
   <body>
     <a-scene>
@@ -43,41 +42,43 @@
       </a-assets>
 
       <!-- Camera -->
-      <a-camera position="-25 1.8 53" wasd-controls="acceleration: 1000" gamepad-controls>
-        <!-- Reticle -->
-          <a-entity cursor="fuse: false"
-            position="0 0 -1"
-            geometry="primitive: ring; radiusInner: 0.013; radiusOuter: 0.02"
-            material="color: #242424; shader: flat; opacity: 0.8">
-          </a-entity>
-          <a-entity cursor="fuse: true"
-            position="0 0 -1"
-            geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.042"
-            material="color: #077560; shader: flat; opacity: 0.6"
-            animation__click="property: material.color; startEvents: click; easing: easeInCubic; dur: 200; from: #242424; to: #077560"
-            animation__fusing="property: geometry.radiusInner; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.04; to: 0.022"
-            animation__mouseleave="property: geometry.radiusInner; startEvents: mouseleave; easing: easeInCubic; dur: 200; to: 0.04"
-            raycaster="objects: .clickable; far: 2">
-          </a-entity>
-        <!-- Reticle interactable -->
-          <a-entity cursor="fuse: false"
-            position="0 0 -1"
-            geometry="primitive: ring; radiusInner: 0.013; radiusOuter: 0.02"
-            material="color: #242424; shader: flat; opacity: 0.8">
-          </a-entity>
-          <a-entity cursor="fuse: true"
-            position="0 0 -1"
-            geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.042"
-            material="color: #077560; shader: flat; opacity: 0.6"
-            animation__click="property: material.color; startEvents: click; easing: easeInCubic; dur: 200; from: #242424; to: #077560"
-            animation__fusing="property: geometry.radiusInner; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.04; to: 0.022"
-            animation__mouseleave="property: geometry.radiusInner; startEvents: mouseleave; easing: easeInCubic; dur: 200; to: 0.04"
-            raycaster="objects: .interactable; far: 50">
-          </a-entity>
-          <!-- Score -->
-        <a-text id="js--score"></a-text>
-        <a-text id="js--sick-counter"></a-text>
-      </a-camera>
+      <a-entity id="camera" movement-controls wasd-controls="acceleration: 1000" position="-25 1.8 53">
+        <a-entity id="inner-camera" camera look-controls="pointerLockEnabled: true;">
+          <!-- Reticle -->
+            <a-entity cursor="fuse: false"
+              position="0 0 -1"
+              geometry="primitive: ring; radiusInner: 0.013; radiusOuter: 0.02"
+              material="color: #242424; shader: flat; opacity: 0.8">
+            </a-entity>
+            <a-entity cursor="fuse: true"
+              position="0 0 -1"
+              geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.042"
+              material="color: #077560; shader: flat; opacity: 0.6"
+              animation__click="property: material.color; startEvents: click; easing: easeInCubic; dur: 200; from: #242424; to: #077560"
+              animation__fusing="property: geometry.radiusInner; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.04; to: 0.022"
+              animation__mouseleave="property: geometry.radiusInner; startEvents: mouseleave; easing: easeInCubic; dur: 200; to: 0.04"
+              raycaster="objects: .clickable; far: 2">
+            </a-entity>
+          <!-- Reticle interactable -->
+            <a-entity cursor="fuse: false"
+              position="0 0 -1"
+              geometry="primitive: ring; radiusInner: 0.013; radiusOuter: 0.02"
+              material="color: #242424; shader: flat; opacity: 0.8">
+            </a-entity>
+            <a-entity cursor="fuse: true"
+              position="0 0 -1"
+              geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.042"
+              material="color: #077560; shader: flat; opacity: 0.6"
+              animation__click="property: material.color; startEvents: click; easing: easeInCubic; dur: 200; from: #242424; to: #077560"
+              animation__fusing="property: geometry.radiusInner; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.04; to: 0.022"
+              animation__mouseleave="property: geometry.radiusInner; startEvents: mouseleave; easing: easeInCubic; dur: 200; to: 0.04"
+              raycaster="objects: .interactable; far: 50">
+            </a-entity>
+              <!-- Score -->
+            <a-text id="js--score"></a-text>
+            <a-text id="js--sick-counter"></a-text>
+        </a-entity>
+      </a-entity>
 
       <!-- Sky -->
       <a-sky color="#f9f7ff"></a-sky>
@@ -85,7 +86,7 @@
       <!-- Instruction area -->
       <a-plane id="js--area-instruction" position="0 0 50" rotation="-90 0 0" width="60" height="10" color="#7d9e86" visible="true">
 
-        <a-text color="#1a1a1a" value="Welkom bij {{TITEL}}" position="-25 4.9 4.5" rotation="90 0 0" align="center" scale="2 2 2"></a-text>
+        <a-text color="#1a1a1a" value="Welkom bij 1.5 meter Extra Vaganza!" position="-25 4.9 4.5" rotation="90 0 0" align="center" scale="2 2 2"></a-text>
         <a-image src="#controller_instructie" position="-27 4.9 3.2" rotation="90 0 0" width="3" height="1.7"></a-image>
         <a-image src="#cardboard" position="-23 4.9 3.2" rotation="90 0 0" width="3" height="1.7"></a-image>
         <a-text color="#1a1a1a" value="Loop naar rechts voor volgende instructies" position="-25 4.9 2" rotation="90 0 0" align="center"></a-text>

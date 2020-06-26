@@ -1,5 +1,7 @@
 window.onload = () => {
-  const camera = document.querySelector("a-camera");
+  // const camera = document.querySelector("a-camera");
+  const camera = document.getElementById("camera");
+  const innerCamera = document.getElementById("inner-camera");
   const mainScene = document.getElementById("js--main");
   const endScene = document.getElementById("js--end");
   const arrows = document.getElementsByClassName("js--arrow");
@@ -217,7 +219,7 @@ window.onload = () => {
     newScore.setAttribute("color", "#1a1a1a");
     score.parentNode.removeChild(score);
     score = newScore;
-    camera.appendChild(score);
+    innerCamera.appendChild(score);
   }
 
   function drawSickCounter() {
@@ -230,7 +232,7 @@ window.onload = () => {
     newSickCounter.setAttribute("color", "#1a1a1a");
     sickCounter.parentNode.removeChild(sickCounter);
     sickCounter = newSickCounter;
-    camera.appendChild(sickCounter);
+    innerCamera.appendChild(sickCounter);
   }
 
   function drawPuzzle2Code() {
