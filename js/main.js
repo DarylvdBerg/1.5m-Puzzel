@@ -57,9 +57,11 @@ window.onload = () => {
   area3Music.volume = 0.1;
   area3Music.loop = true;
 
-  let score = document.getElementById("js--score");
-  let sickCounter = document.getElementById("js--sick-counter");
+  // let score = document.getElementById("js--score");
+  // let sickCounter = document.getElementById("js--sick-counter");
   let codeText = document.getElementById('js--puzzle-2-code');
+  let scoreText = document.getElementsByClassName("js--score");
+  let sickText = document.getElementsByClassName("js--sickCounter");
   let scorePoints = 0;
   let sickPeople = 0;
   let puzzelsCompleted = 0;
@@ -117,7 +119,7 @@ window.onload = () => {
   for (let i = 0; i < boxButtons.length; i++) {
     boxButtons[i].addEventListener('click', function (event) {
       completePuzzel(event.target);
-      drawScore();
+      updateScore(10);
     });
   }
 
@@ -167,8 +169,6 @@ window.onload = () => {
   document.getElementById('js--door-puzzel-instruction')
   .addEventListener('click', function(event){
     areaTransition(areaInstruction, area1, "0 1.8 20");
-    drawScore();
-    drawSickCounter();
     area1Music.play();
   });
 
@@ -200,31 +200,31 @@ window.onload = () => {
   //                  //
   // GENERAL METHODS  //
   //                  //
-  function drawScore() {
-    let newScore = document.createElement("a-text");
-    newScore.setAttribute("id", "js--score");
-    newScore.setAttribute("value", "score: " + scorePoints);
-    newScore.setAttribute("position", "0 0.07 -0.1");
-    newScore.setAttribute("align", "center");
-    newScore.setAttribute("width", "0.2");
-    newScore.setAttribute("color", "#1a1a1a");
-    score.parentNode.removeChild(score);
-    score = newScore;
-    innerCamera.appendChild(score);
-  }
-
-  function drawSickCounter() {
-    let newSickCounter = document.createElement("a-text");
-    newSickCounter.setAttribute("id", "js--sick-counter");
-    newSickCounter.setAttribute("value", "sick: " + sickPeople);
-    newSickCounter.setAttribute("position", ".16 0.07 -0.1");
-    newSickCounter.setAttribute("align", "right");
-    newSickCounter.setAttribute("width", "0.2");
-    newSickCounter.setAttribute("color", "#1a1a1a");
-    sickCounter.parentNode.removeChild(sickCounter);
-    sickCounter = newSickCounter;
-    innerCamera.appendChild(sickCounter);
-  }
+  // function drawScore() {
+  //   let newScore = document.createElement("a-text");
+  //   newScore.setAttribute("id", "js--score");
+  //   newScore.setAttribute("value", "score: " + scorePoints);
+  //   newScore.setAttribute("position", "0 0.07 -0.1");
+  //   newScore.setAttribute("align", "center");
+  //   newScore.setAttribute("width", "0.2");
+  //   newScore.setAttribute("color", "#1a1a1a");
+  //   score.parentNode.removeChild(score);
+  //   score = newScore;
+  //   innerCamera.appendChild(score);
+  // }
+  //
+  // function drawSickCounter() {
+  //   let newSickCounter = document.createElement("a-text");
+  //   newSickCounter.setAttribute("id", "js--sick-counter");
+  //   newSickCounter.setAttribute("value", "sick: " + sickPeople);
+  //   newSickCounter.setAttribute("position", ".16 0.07 -0.1");
+  //   newSickCounter.setAttribute("align", "right");
+  //   newSickCounter.setAttribute("width", "0.2");
+  //   newSickCounter.setAttribute("color", "#1a1a1a");
+  //   sickCounter.parentNode.removeChild(sickCounter);
+  //   sickCounter = newSickCounter;
+  //   innerCamera.appendChild(sickCounter);
+  // }
 
   function drawPuzzle2Code() {
     let newCode = document.createElement("a-text");
@@ -239,12 +239,16 @@ window.onload = () => {
 
   function updateSickCounter(newSickPeople) {
     sickPeople += newSickPeople;
-    drawSickCounter();
+    for(let i = 0; i < sickText.length; i++) {
+      sickText[i].setAttribute("value", "Aantal zieken: "+sickPeople);
+    }
   }
 
   function updateScore(newScore) {
     scorePoints += newScore;
-    drawScore();
+    for(let i = 0; i < scoreText.length; i++) {
+      scoreText[i].setAttribute("value", "Score: "+scorePoints);
+    }
   }
 
   function completePuzzel(boxButton) {
