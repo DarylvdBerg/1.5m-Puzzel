@@ -166,7 +166,7 @@ window.onload = () => {
   // Progress to stage 1
   document.getElementById('js--door-puzzel-instruction')
   .addEventListener('click', function(event){
-    areaTransition(areaInstruction, area1, "0 1 20");
+    areaTransition(areaInstruction, area1, "0 1.8 20");
     drawScore();
     drawSickCounter();
     area1Music.play();
