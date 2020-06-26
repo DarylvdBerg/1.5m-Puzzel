@@ -1,12 +1,9 @@
 window.onload = () => {
-  // const camera = document.querySelector("a-camera");
   const camera = document.getElementById("camera");
   const innerCamera = document.getElementById("inner-camera");
   const mainScene = document.getElementById("js--main");
   const endScene = document.getElementById("js--end");
-  const arrows = document.getElementsByClassName("js--arrow");
   const boxButtons = document.getElementsByClassName('js--boxButton');
-  const platforms = document.getElementsByClassName('js--platform');
   const doorUnlockersBad = document.getElementsByClassName('js--door-unlocker-bad');
   const doorUnlockersGood = document.getElementsByClassName("js--door-unlocker-good");
   const areaInstruction = document.getElementById("js--area-instruction");
@@ -124,12 +121,6 @@ window.onload = () => {
     });
   }
 
-  for (let i = 0; i < platforms.length; i++) {
-    platforms[i].addEventListener('click', function (event) {
-      updatePlayerPosition(event.target.getAttribute("position"));
-    });
-  }
-
   for (let i = 0; i < puzzleReset.length; i++) {
     puzzleReset[i].addEventListener('click', function (event) {
       for (let i = 0; i < puzzleButtons.length; i++) {
@@ -175,7 +166,7 @@ window.onload = () => {
   // Progress to stage 1
   document.getElementById('js--door-puzzel-instruction')
   .addEventListener('click', function(event){
-    areaTransition(areaInstruction, area1, "0 1.8 20");
+    areaTransition(areaInstruction, area1, "0 1 20");
     drawScore();
     drawSickCounter();
     area1Music.play();
